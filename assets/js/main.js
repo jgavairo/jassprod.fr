@@ -1,4 +1,3 @@
-// Gestion des artistes et des modales
 class ArtistManager {
     constructor() {
         this.artists = {};
@@ -9,6 +8,7 @@ class ArtistManager {
         this.loadArtists();
         this.initSpotifyMessageListener();
         this.initMiniPlayer();
+        this.initHistoryHandling();
     }
 
     init() {
@@ -36,10 +36,6 @@ class ArtistManager {
             const trackItem = e.target.closest('.track-item');
             if (!trackItem) return;
 
-            // Empêcher les clics multiples
-            if (trackItem.dataset.isPlaying === 'true') return;
-            trackItem.dataset.isPlaying = 'true';
-
             try {
                 const modalContent = trackItem.closest('.modal-content');
                 const artistName = modalContent.querySelector('.modal-header h2').textContent;
@@ -47,16 +43,26 @@ class ArtistManager {
                 const track = this.findTrackByTitle(artistName, trackTitle);
                 
                 if (track) {
-                    this.currentTrack = { track, artistName };
-                    await this.showMiniPlayer(track, artistName);
+                    // Si c'est le même morceau qui est déjà en cours
+                    if (this.currentTrack && 
+                        this.currentTrack.track.title === track.title && 
+                        this.currentTrack.artistName === artistName) {
+                        // Envoyer la commande play/pause au lecteur existant
+                        const iframe = this.miniPlayer.querySelector('iframe');
+                        if (iframe) {
+                            iframe.contentWindow.postMessage({
+                                type: 'command',
+                                command: 'toggle'
+                            }, 'https://open.spotify.com');
+                        }
+                    } else {
+                        // Charger et jouer le nouveau morceau
+                        this.currentTrack = { track, artistName };
+                        await this.showMiniPlayer(track, artistName);
+                    }
                 }
             } catch (error) {
                 console.error('Erreur lors de la lecture:', error);
-            } finally {
-                // Réactiver le clic après un court délai
-                setTimeout(() => {
-                    trackItem.dataset.isPlaying = 'false';
-                }, 1000);
             }
         });
 
@@ -88,35 +94,29 @@ class ArtistManager {
                 
                 try {
                     const data = JSON.parse(e.data);
-                    // Attendre que le lecteur soit réellement prêt
-                    if (data.type === 'ready' || data.type === 'initialized') {
-                        // Attendre un peu plus longtemps pour s'assurer que le lecteur est complètement initialisé
-                        setTimeout(() => {
-                            const iframe = playerEl.querySelector('iframe');
-                            if (iframe) {
-                                // Envoyer la commande de lecture avec le nouveau format
+                    if (data.type === 'ready') {
+                        const iframe = playerEl.querySelector('iframe');
+                        if (iframe) {
+                            setTimeout(() => {
                                 iframe.contentWindow.postMessage({
                                     type: 'command',
                                     command: 'play'
                                 }, 'https://open.spotify.com');
                                 
-                                // Nettoyer le gestionnaire d'événements
                                 window.removeEventListener('message', messageHandler);
                                 resolve();
-                            }
-                        }, 2000); // Attendre 2 secondes après que l'iframe soit prête
+                            }, 500);
+                        }
                     }
                 } catch (error) {
                     console.error('Erreur lors du traitement du message:', error);
                 }
             };
 
-            // Ajouter le gestionnaire d'événements avant de créer l'iframe
             window.addEventListener('message', messageHandler);
             
-            // Créer l'iframe avec les paramètres optimisés
             playerEl.innerHTML = `
-                <iframe src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&view=transport&autoplay=1"
+                <iframe src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&autoplay=1"
                     width="100%"
                     height="90"
                     frameBorder="0"
@@ -236,6 +236,9 @@ class ArtistManager {
         const modal = document.querySelector(`#modal-${artistId}`);
         if (!modal) return;
 
+        // Ajouter un nouvel état dans l'historique
+        history.pushState({ modalOpen: true }, '', `#${artistId}`);
+
         this.currentModal = modal;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -249,15 +252,14 @@ class ArtistManager {
         // Gestionnaire de fermeture
         const closeBtn = modal.querySelector('.close-modal');
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => this.closeCurrentModal());
+            closeBtn.addEventListener('click', () => this.closeCurrentModal(true));
         }
     }
 
-    closeCurrentModal() {
+    closeCurrentModal(updateHistory = true) {
         if (!this.currentModal) return;
 
         // Si un morceau est en cours de lecture, afficher le mini-player
-        // seulement s'il n'est pas déjà visible
         if (this.currentTrack && !this.miniPlayer.classList.contains('active')) {
             this.showMiniPlayer(this.currentTrack.track, this.currentTrack.artistName);
         }
@@ -265,6 +267,11 @@ class ArtistManager {
         this.currentModal.classList.remove('active');
         document.body.style.overflow = '';
         this.currentModal = null;
+
+        // Mettre à jour l'historique si nécessaire
+        if (updateHistory) {
+            history.pushState({ modalOpen: false }, '', '/');
+        }
     }
 
     // Méthode pour ajouter un artiste dynamiquement
@@ -342,9 +349,23 @@ class ArtistManager {
         const match = spotifyUrl.match(/track\/([a-zA-Z0-9]+)/);
         return match ? match[1] : '';
     }
+
+    initHistoryHandling() {
+        // Gérer le retour arrière du navigateur
+        window.addEventListener('popstate', (event) => {
+            if (this.currentModal) {
+                this.closeCurrentModal(false);
+            }
+        });
+    }
 }
 
 // Initialisation quand le DOM est chargé
 document.addEventListener('DOMContentLoaded', () => {
     window.artistManager = new ArtistManager();
-}); 
+});
+
+// Scroll to top on page load
+window.onload = function() {
+    window.scrollTo(0, 0);
+}; 

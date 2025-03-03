@@ -71,5 +71,16 @@ const artistsData = {
             }
 
         ]
+    },
+    jass: {
+        id: "jass",
+        name: "Jass",
+        tracks: [
+            {
+                title: "Ça arrive bientôt..",
+                image: "assets/images/artist_jass.png",
+                spotify: "#"
+            }
+        ]
     }
 }; 
