@@ -43,23 +43,9 @@ class ArtistManager {
                 const track = this.findTrackByTitle(artistName, trackTitle);
                 
                 if (track) {
-                    // Si c'est le même morceau qui est déjà en cours
-                    if (this.currentTrack && 
-                        this.currentTrack.track.title === track.title && 
-                        this.currentTrack.artistName === artistName) {
-                        // Envoyer la commande play/pause au lecteur existant
-                        const iframe = this.miniPlayer.querySelector('iframe');
-                        if (iframe) {
-                            iframe.contentWindow.postMessage({
-                                type: 'command',
-                                command: 'toggle'
-                            }, 'https://open.spotify.com');
-                        }
-                    } else {
-                        // Charger et jouer le nouveau morceau
-                        this.currentTrack = { track, artistName };
-                        await this.showMiniPlayer(track, artistName);
-                    }
+                    // Toujours charger et jouer le nouveau morceau
+                    this.currentTrack = { track, artistName };
+                    await this.showMiniPlayer(track, artistName);
                 }
             } catch (error) {
                 console.error('Erreur lors de la lecture:', error);

@@ -709,7 +709,8 @@ body:has(.mini-player.active) .footer {
 .mini-player-close {
     position: absolute;
     right: 24px;
-    background: none;
+    top: 8px;
+    background: rgba(0, 0, 0, 0.6);
     border: none;
     color: var(--text-secondary);
     font-size: 1.5rem;
@@ -723,6 +724,7 @@ body:has(.mini-player.active) .footer {
     height: 32px;
     border-radius: 50%;
     z-index: 2;
+    backdrop-filter: blur(4px);
 }
 
 .mini-player-close:hover {
@@ -741,12 +743,35 @@ body:has(.mini-player.active) .footer {
     
     .mini-player-close {
         right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 8px;
+        transform: none;
     }
 
     .mini-player-spotify {
         max-width: none;
+        padding-top: 8px;
+    }
+
+    .playlist-link {
+        aspect-ratio: 32/6;
+        background: linear-gradient(45deg, var(--surface-color), rgba(187, 134, 252, 0.2));
+        border: 1px solid rgba(187, 134, 252, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: calc(var(--spacing-unit) * 1.5);
+    }
+
+    .playlist-content {
+        width: 100%;
+    }
+
+    .playlist-content p {
+        width: 100%;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        color: var(--text-primary);
+        text-decoration: none;
     }
 }
 
