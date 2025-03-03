@@ -364,16 +364,32 @@ body {
     font-size: 0.9rem;
     transition: all var(--transition-speed) ease;
     border: 1px solid rgba(255, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     z-index: 2;
+    position: relative;
+    overflow: hidden;
 }
 
-.platform-link.youtube:before {
-    display: none;
+.platform-link.youtube::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: inherit;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+}
+
+.platform-link.youtube:hover {
+    background: rgba(255, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
 .platform-link.youtube span {
     display: inline;
+    position: relative;
+    z-index: 2;
 }
 
 /* Animations */
@@ -694,39 +710,18 @@ body:has(.mini-player.active) .footer {
     height: 90px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .mini-player-spotify iframe {
     width: 100%;
     height: 90px;
     border: none;
-    margin-left: -32px;
+    margin-left: 0;
 }
 
 .mini-player-close {
-    position: absolute;
-    right: 24px;
-    top: 8px;
-    background: rgba(0, 0, 0, 0.6);
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 8px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    z-index: 2;
-    backdrop-filter: blur(4px);
-}
-
-.mini-player-close:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.1);
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -737,42 +732,9 @@ body:has(.mini-player.active) .footer {
     .mini-player-info {
         display: none;
     }
-    
-    .mini-player-close {
-        right: 16px;
-        top: 8px;
-        transform: none;
-    }
-
-    .mini-player-spotify {
-        max-width: none;
-        padding-top: 8px;
-    }
 
     .mini-player-spotify iframe {
-        margin-left: -24px;
-    }
-
-    .playlist-link {
-        aspect-ratio: 32/6;
-        background: linear-gradient(45deg, var(--surface-color), rgba(187, 134, 252, 0.2));
-        border: 1px solid rgba(187, 134, 252, 0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: calc(var(--spacing-unit) * 1.5);
-    }
-
-    .playlist-content {
-        width: 100%;
-    }
-
-    .playlist-content p {
-        width: 100%;
-        font-size: 1rem;
-        letter-spacing: 2px;
-        color: var(--text-primary);
-        text-decoration: none;
+        margin-left: 0;
     }
 }
 
