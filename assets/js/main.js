@@ -322,7 +322,7 @@ class ArtistManager {
                     <div class="track-links">
                         ${track.youtube ? `
                             <a href="${track.youtube}" class="platform-link youtube" target="_blank" rel="noopener">
-                                <span>YouTube</span>
+                                <span>Clip</span>
                             </a>
                         ` : ''}
                     </div>
