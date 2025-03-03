@@ -24,13 +24,13 @@ const artistsData = {
             {
                 title: "Plus là",
                 spotify: "https://open.spotify.com/intl-fr/track/3KePlyK0GW3LIfb9mQLiXy",
-                image: "assets/images/tracks/plus_la.png"
+                image: "assets/images/tracks/tous_les_jours.png"
             },
             {
                 title: "Tous les jours",
                 spotify: "https://open.spotify.com/intl-fr/track/1UWviQWLW7YZLCrQs1hGmO",
                 youtube: "https://www.youtube.com/watch?v=8Uqc6bCivDI",
-                image: "assets/images/tracks/tous_les_jours.png"
+                image: "assets/images/tracks/plus_la.png"
             }
         ]
     },
@@ -41,6 +41,11 @@ const artistsData = {
             {
                 title: "Elle sait pas",
                 spotify: "https://open.spotify.com/intl-fr/track/3oPzchMhkOciIuwt1R7rJM",
+                image: "assets/images/artist_louv.png"
+            },
+            {
+                title: "Immortel",
+                spotify: "https://open.spotify.com/intl-fr/track/1drvEs2HIQgDABBxo8N9Z9",
                 image: "assets/images/artist_louv.png"
             }
         ]
@@ -57,19 +62,48 @@ const artistsData = {
             {
                 title: "Lumière",
                 spotify: "https://open.spotify.com/intl-fr/track/3me1JibGEerGeWhBYutpM7", 
-                image: "assets/images/tracks/artist_cabrino.png"
+                image: "assets/images/artist_cabrino.png"
             },
             {
                 title: "Shawty",
                 spotify: "https://open.spotify.com/intl-fr/track/1p1dKQGMbvHka4yDJTL1gZ",
-                image: "assets/images/tracks/artist_cabrino.png"
+                image: "assets/images/artist_cabrino.png"
             },
             {
                 title: "Sable, mer, coquillages",
                 spotify: "https://open.spotify.com/intl-fr/track/5MMTnRt9H0mqLQCMrKw6iX",
                 image: "assets/images/tracks/sablemercoquillage.png"
+            },
+            {
+                title: "Flamme",
+                spotify: "https://open.spotify.com/intl-fr/track/4D3H4LOX4T7en9K5YLz4yF",
+                image: "assets/images/tracks/makima.png"
+            },
+            {
+                title: "Le doute",
+                spotify: "https://open.spotify.com/intl-fr/track/3Alz4hCTCVJN6cIPN9U1qt",
+                image: "assets/images/tracks/makima.png"
+            },
+            {
+                title: "Vers le vide",
+                spotify: "https://open.spotify.com/intl-fr/track/6WVytflOnmBvBC069EII7c",
+                image: "assets/images/tracks/makima.png"
+            },
+            {
+                title: "Avant tout le reste",
+                spotify: "https://open.spotify.com/intl-fr/track/6WVytflOnmBvBC069EII7c",
+                image: "assets/images/tracks/makima.png"
+            },
+            {
+                title: "Soleil",
+                spotify: "https://open.spotify.com/intl-fr/track/1CjJqJBkufYVNzMCfKiFr5",
+                image: "assets/images/tracks/makima.png"
+            },
+            {
+                title: "Wow",
+                spotify: "https://open.spotify.com/intl-fr/track/4XpP430mySrUcVDSUchAcW",
+                image: "assets/images/tracks/makima.png"
             }
-
         ]
     },
     jass: {

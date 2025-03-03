@@ -207,6 +207,9 @@ body {
     margin: 40px auto;
     padding: var(--spacing-unit);
     border-radius: var(--border-radius-lg);
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-header {
@@ -355,9 +358,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    padding: 0 12px;
     height: 32px;
-    border-radius: 50%;
+    border-radius: 16px;
     font-size: 0.9rem;
     transition: all var(--transition-speed) ease;
     border: 1px solid rgba(255, 0, 0, 0.2);
@@ -366,22 +369,11 @@ body {
 }
 
 .platform-link.youtube:before {
-    content: "▶";
-    font-size: 0.8em;
-    opacity: 0.8;
-}
-
-.platform-link.youtube:hover {
-    background: rgba(255, 0, 0, 0.2);
-    transform: scale(1.1);
+    display: none;
 }
 
 .platform-link.youtube span {
-    display: none;
-}
-
-.platform-link.youtube:after {
-    display: none;
+    display: inline;
 }
 
 /* Animations */
@@ -508,6 +500,10 @@ body {
     .social-link {
         font-size: 0.8rem;
         padding: 6px 12px;
+    }
+
+    .modal-footer {
+        padding: calc(var(--spacing-unit) * 2) 0;
     }
 }
 
@@ -704,6 +700,7 @@ body:has(.mini-player.active) .footer {
     width: 100%;
     height: 90px;
     border: none;
+    margin-left: -32px;
 }
 
 .mini-player-close {
@@ -750,6 +747,10 @@ body:has(.mini-player.active) .footer {
     .mini-player-spotify {
         max-width: none;
         padding-top: 8px;
+    }
+
+    .mini-player-spotify iframe {
+        margin-left: -24px;
     }
 
     .playlist-link {
@@ -856,4 +857,12 @@ body:has(.mini-player.active) .footer {
     .playlist-link {
         aspect-ratio: 32/6;
     }
+}
+
+.modal-footer {
+    margin-top: auto;
+    padding: calc(var(--spacing-unit) * 3) 0;
+    background: linear-gradient(to top, var(--surface-color) 0%, transparent 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 } 
