@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de productions musicales - Beatmaker professionnel">
+    <title>Jass - Beatmaker</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>JASS</h1>
+            <p>Beatmaker & Compositeur</p>
+        </header>
+
+        <main class="artists-grid">
+            <!-- Jass -->
+            <div class="artist-card" data-artist-id="jass">
+                <img src="assets/images/artist_jass.png" alt="Jass" class="artist-image">
+                <div class="artist-content">
+                    <h2>Jass</h2>
+                </div>
+            </div>
+
+            <!-- Nemes -->
+            <div class="artist-card" data-artist-id="nemes">
+                <img src="assets/images/artist_nemes.png" alt="Nemès" class="artist-image">
+                <div class="artist-content">
+                    <h2>Nemès</h2>
+                </div>
+            </div>
+
+            <!-- Louv -->
+            <div class="artist-card" data-artist-id="louv">
+                <img src="assets/images/artist_louv.png" alt="Louv" class="artist-image">
+                <div class="artist-content">
+                    <h2>Louv</h2>
+                </div>
+            </div>
+
+            <!-- Cabrino -->
+            <div class="artist-card" data-artist-id="cabrino">
+                <img src="assets/images/artist_cabrino.png" alt="Cabrino" class="artist-image">
+                <div class="artist-content">
+                    <h2>Cabrino</h2>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 JASS. Tous droits réservés.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/jassprod/" target="_blank" class="social-link">Instagram</a>
+                    <a href="https://www.youtube.com/@JassProd_" target="_blank" class="social-link">YouTube</a>
+                    <a href="https://open.spotify.com/user/31dkytkfkbhdfiwj5dea5to2s4pm" target="_blank" class="social-link">Spotify</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modales des artistes -->
+    <div class="artist-modal" id="modal-jass">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="assets/images/artist_jass.png" alt="Jass" class="artist-image">
+                <div class="header-content">
+                    <h2>Jass</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+            </div>
+            <div class="tracks-list">
+                <!-- Les tracks seront ajoutées dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <div class="artist-modal" id="modal-nemes">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="assets/images/artist_nemes.png" alt="Nemès" class="artist-image">
+                <div class="header-content">
+                    <h2>Nemès</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+            </div>
+            <div class="tracks-list">
+                <!-- Les tracks seront ajoutées dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <div class="artist-modal" id="modal-louv">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="assets/images/artist_louv.png" alt="Louv" class="artist-image">
+                <div class="header-content">
+                    <h2>Louv</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+            </div>
+            <div class="tracks-list">
+                <!-- Les tracks seront ajoutées dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <div class="artist-modal" id="modal-cabrino">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="assets/images/artist_cabrino.png" alt="Cabrino" class="artist-image">
+                <div class="header-content">
+                    <h2>Cabrino</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+            </div>
+            <div class="tracks-list">
+                <!-- Les tracks seront ajoutées dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Mini lecteur persistant -->
+    <div class="mini-player" id="miniPlayer">
+        <div class="mini-player-content">
+            <div class="mini-player-info">
+                <h4 class="mini-player-title"></h4>
+                <p class="mini-player-artist"></p>
+            </div>
+            <div class="mini-player-spotify"></div>
+            <button class="mini-player-close">&times;</button>
+        </div>
+    </div>
+</body>
+</html>
