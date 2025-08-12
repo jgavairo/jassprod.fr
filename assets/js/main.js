@@ -297,7 +297,6 @@ class ArtistManager {
                 <div class="tracks-list">
                     ${artistData.tracks.map(track => this.createTrackItem(track)).join('')}
                 </div>
-                <div class="modal-footer"></div>
             </div>
         `;
         return modal;
