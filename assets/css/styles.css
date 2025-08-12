@@ -65,8 +65,18 @@ body {
     margin: 0 auto;
     display: block;
     position: relative;
-    left: 37%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
+    opacity: 0.7;
+    -webkit-mask-image: 
+        linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 98%),
+        radial-gradient(ellipse at center, black 75%, transparent 95%);
+    mask-image: 
+        linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 98%),
+        radial-gradient(ellipse at center, black 75%, transparent 95%);
+    -webkit-mask-composite: intersect;
+    mask-composite: intersect;
+    filter: drop-shadow(0 0 24px rgba(220, 78, 209, 0.18));
 }
 
 .header p {
@@ -77,20 +87,15 @@ body {
     text-transform: uppercase;
 }
 
-/* Effet de lueur ambiant */
-.header::before {
-    display: none;
-}
-
 .logo-image {
-    max-width: 1400px;
-    width: 95%;
+    max-width: 900px;
+    width: clamp(260px, 60vw, 900px);
     height: auto;
     margin-bottom: calc(var(--spacing-unit) * 2);
     transition: transform var(--transition-speed) ease;
     position: relative;
-    -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 95%);
-    mask-image: radial-gradient(circle at center, black 60%, transparent 95%);
+    -webkit-mask-image: radial-gradient(circle at center, black 85%, transparent 98%);
+    mask-image: radial-gradient(circle at center, black 85%, transparent 98%);
 }
 
 .logo-image:hover {
@@ -383,9 +388,13 @@ body {
 }
 
 .play-button {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    z-index: 3;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .platform-link.youtube {
@@ -394,10 +403,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
     transition: all var(--transition-speed) ease;
     border: 1px solid rgba(255, 0, 0, 0.2);
     backdrop-filter: blur(4px);
@@ -406,22 +414,23 @@ body {
     letter-spacing: 1px;
     font-weight: 500;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .platform-link.youtube:before {
-    content: "▶";
-    font-size: 0.8em;
-    opacity: 0.8;
+    display: none;
 }
 
 .platform-link.youtube:hover {
-    background: rgba(255, 0, 0, 0.2);
-    transform: scale(1.1);
+    background: rgba(255, 0, 0, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
 }
 
 .platform-link.youtube span {
-    display: none;
+    display: inline;
 }
+
 .platform-link.youtube:after {
     display: none;
 }
@@ -811,7 +820,6 @@ body:has(.mini-player.active) .footer {
     border: 1px solid var(--primary-color);
     opacity: 0.9;
 }
-
 
 /* Style de la barre de défilement pour Chrome/Safari/Edge */
 ::-webkit-scrollbar {
