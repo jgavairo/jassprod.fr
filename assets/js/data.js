@@ -4,10 +4,22 @@ const artistsData = {
         name: "Nemès",
         tracks: [
             {
+                title: "Frenesie",
+                spotify: "https://open.spotify.com/intl-fr/track/6r5vIy222xPe3CnN2D386g",
+                youtube: "https://www.youtube.com/watch?v=Sm6Jib4_ZLE",
+                image: "assets/images/tracks/artist_nemes.png"
+            },
+            {
+                title: "433",
+                spotify: "https://open.spotify.com/intl-fr/track/5VW3cH9hl8Y6WU7GSnlaYU",
+                youtube: "https://www.youtube.com/watch?v=YQk8x75_O8U",
+                image: "assets/images/tracks/artist_nemes.png"
+            },
+            {
                 title: "Le poids du monde",
                 spotify: "https://open.spotify.com/track/41pywQ3mS3pXKCQzosi24T",
                 youtube: "https://www.youtube.com/watch?v=_gv8S70JI_o",
-                image: "assets/images/tracks/artist_nemes.png"
+                image: "assets/images/tracks/lpdm_nemes.png"
             },
             {
                 title: "Océan",
